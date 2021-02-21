@@ -50,7 +50,7 @@ Le code métier se trouve dans le controller de l'application "TodoListControlle
 
 *Cette règle est-elle facilement testable par un test unitaire ?*
 
-Cette méthode de définir les exigences métiers de l'application permet de simplifier les tests unitaires à effectuer sur les règles. Dans ce cas là, il suffit de faire passer un temps fictif en paramètre au lieu de l'objet et tester séparément son fonctionnement.
+Tout d'abord, cette méthode est privée, ce qui peut entrainer un problème de portée de données lors des tests. 
 
 * Lancer une base PostgreSQL en Docker dans un terminal (on lance ici la base en mode interactif pour visualiser son activité. Pour la lancer en tâche de fond, remplacer les options `it` par `d` comme 'daemon'):
 ```bash
@@ -58,9 +58,19 @@ docker run -it -e POSTGRES_PASSWORD=password -p 5432:5432 postgres
 ```
 *Expliquer cette ligne de commande (y compris les options utilisées)*
 
+Cette ligne de commande permet de définir un mot de passe pour l'environnement sur le port 5432:5432.
+L'option -d permet d'exectuer cette commande en tâche de fond.
+L'option -e permet de définir une variable ou une donnée d'environnement.
+L'option -p permet d'afficher le port du container dans l'invite de commande.
+
 * Compléter le code manquant dans la méthode `TodoListController.createTodoItem()`
 
+
+
 *Pourquoi `todoItemRepository` est-il `null` ? Quelle est la meilleure façon de l'injecter ?*
+
+'todoItemRepository' est null car il n'y pas d'injection de donnée dans la méthode à ce moment.
+Dans notre cas, il suffit d'ajouter l'annotation @Inject au dessus de la méthode.
 
 * Modifier le code en conséquence.
 
@@ -87,6 +97,9 @@ NOTE: Pour lancer l'application Spring, selectionner la classe `TodolistApplicat
 
 * Vérifier avec DBeaver que les donnnées sont bien en base PostgreSQL.
 
+Pour résumer notre travail sur l'application 1, nous avons donc ajouté l'annontation Inject dans le controller de l'exercice (ToDoListController) pour pouvoir injecter les données. Ensuite nous avons complété la méthode createToDoItem pour pouvoir récupérer les données injectées dans les objets. Enfin, nous avons testé notre code à l'aide d'Insomnia et de Dbeaver pour constater que nous avions bien crée l'items en base.
+
+
 ### Exercice 2 - Refactoring en architecture hexagonale
 _Temps estimé : 1 h 20_
 
@@ -102,6 +115,13 @@ Source : http://leanpub.com/get-your-hands-dirty-on-clean-architecture[Tom Hombe
   - la couche `domain` qui contient les entités (au sens DDD, pas au sens JPA). En général des classes complexes (méthodes riches, relations entre les entités)
 
 *Rappeler en quelques lignes les grands principes de l'architecture hexagonale.*
+
+L'architecture hexagonale a pour but de séparer le code en trois parties différentes : 
+-Une partie User-side qui inclut toute la partie utilisateur (la partie avec laquelle l'utilisateur intéragit).
+-Une partie Business logic qui comprend toute la partie code métier de l'application.
+-Une partie Server-side qui comprend la parties base de données et les appels HTTP vers d'autres applications dont celle nous dépendons etc...
+
+Cette façon de procéder permet d'isoler efficacement les problème dans le sens où ils seront plus facile à identifier. Chaque couche est plus ou moins indépendante des autres ce qui permet de traiter les problèmes dans impacter les autres parties.
 
 Compléter ce code avec une fonctionnalité de création de `TodoItem`  persisté en base et appelé depuis un endpoint REST `POST /todos` qui :
 
@@ -119,7 +139,11 @@ _Temps estimé : 20 mins_
 
 *Quels types de tests devra-t-on écrire pour les adapteurs ?* 
 
+Nous allons devoir écrire des tests unitaire pour tester les adapteurs.
+
 *Que teste-on dans ce cas ?*
+
+Nous allons donc tester chaque module des adapteurs de façon isolée.
 
 *S'il vous reste du temps, écrire quelques uns de ces types de test.*
 
