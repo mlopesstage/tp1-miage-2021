@@ -130,6 +130,8 @@ Compléter ce code avec une fonctionnalité de création de `TodoItem`  persist�
 
 La fonctionnalité à implémenter est contractualisée par le port d'entrée `AddTodoItem`.
 
+Nous avons compléter le code manquant pour la création en base d'un item. La création s'effectue sans problème (essais de requêtes avec Insomnia et vérification des données en base avec DBeaver).
+
 ### Exercice 3 - Ecriture de tests
 _Temps estimé : 20 mins_
 
