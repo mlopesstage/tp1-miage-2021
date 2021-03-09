@@ -149,6 +149,10 @@ Nous allons donc tester chaque module des adapteurs de façon isolée.
 
 *S'il vous reste du temps, écrire quelques uns de ces types de test.*
 
+Concernant les tests, nous en avons rajouté 2.
+- Le premier permet de tester que le champ "content" soit bien rempli.
+- Le second permet de tester que la taille de l'ID soit supérieure ou égale à 8.
+
 [TIP]
 =====
 - Pour tester l'adapter REST, utiliser l'annotation `@WebMvcTest(controllers = TodoListController.class)`
