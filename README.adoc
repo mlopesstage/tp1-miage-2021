@@ -141,11 +141,12 @@ _Temps estimé : 20 mins_
 
 *Quels types de tests devra-t-on écrire pour les adapteurs ?* 
 
-Nous allons devoir écrire des tests unitaire pour tester les adapteurs.
+Les adapaters sont des classes qui permettent de liés plusieurs composants incompatibles d'un système.
+Nous allons devoir écrire des tests d'intégration pour tester les adapteurs, ça va permettre de tester des parties précises du programme.
 
 *Que teste-on dans ce cas ?*
 
-Nous allons donc tester chaque module des adapteurs de façon isolée.
+Nous allons tester chaque module du logiciel de façon isolée. Pour être plus précis nous allons tester chaque adapter avec les composants qu'il lie.
 
 *S'il vous reste du temps, écrire quelques uns de ces types de test.*
 
