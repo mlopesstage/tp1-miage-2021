@@ -159,3 +159,14 @@ Concernant les tests, nous en avons rajouté 2.
 - Pour tester l'adapter REST, utiliser l'annotation `@WebMvcTest(controllers = TodoListController.class)`
 - Voir cette https://spring.io/guides/gs/testing-web/[documentation]
 =====
+
+
+[TD]
+Exercice 3 - Injection de dépendance
+● Écrire le pseudo code d'injection entre les classes suivantes sachant que :
+◦ClientMail a besoin d'un ServerMail
+◦ClientMail a besoin d'un MessageFormatter (singleton)
+◦ServerMail a besoin d'une Connection
+● Le faire avec chacune des trois types d'injection.
+● MessageFormatter manipule des beans Message sans dépendances.
+Doit-on injecter l'objet Message ?
