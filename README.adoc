@@ -162,6 +162,8 @@ Concernant les tests, nous en avons rajouté 2.
 
 ### [TD] Exercice 3 suite - Injection de dépendance
 ● Écrire le pseudo code d'injection entre les classes suivantes sachant que :
+
+● Le faire avec chacune des trois types d'injection.
 ◦ClientMail a besoin d'un ServerMail (injection par constructeur)
 
 public class ClientMail{
@@ -290,7 +292,6 @@ public class ServerMail{
         
 }
 
-● Le faire avec chacune des trois types d'injection.
 ● MessageFormatter manipule des beans Message sans dépendances.
 
 <bean id="Message" class="Message">
