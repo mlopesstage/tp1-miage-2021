@@ -160,11 +160,15 @@ Concernant les tests, nous en avons rajouté 2.
 - Voir cette https://spring.io/guides/gs/testing-web/[documentation]
 =====
 
-
 [TD]
-Exercice 3 - Injection de dépendance
+Exercice 3 suite - Injection de dépendance
 ● Écrire le pseudo code d'injection entre les classes suivantes sachant que :
 ◦ClientMail a besoin d'un ServerMail
+
+public class ClientMail{
+    fezefezferzfv{ eaiueauz
+    }
+}
 ◦ClientMail a besoin d'un MessageFormatter (singleton)
 ◦ServerMail a besoin d'une Connection
 ● Le faire avec chacune des trois types d'injection.
