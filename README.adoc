@@ -160,17 +160,150 @@ Concernant les tests, nous en avons rajouté 2.
 - Voir cette https://spring.io/guides/gs/testing-web/[documentation]
 =====
 
-[TD]
-Exercice 3 suite - Injection de dépendance
+### [TD] Exercice 3 suite - Injection de dépendance
 ● Écrire le pseudo code d'injection entre les classes suivantes sachant que :
-◦ClientMail a besoin d'un ServerMail
+◦ClientMail a besoin d'un ServerMail (injection par constructeur)
 
 public class ClientMail{
-    fezefezferzfv{ eaiueauz
+
+    ServerMail server;
+    
+    @inject 
+    
+    public ClientMail (ServerMail server){
+    
+        this.server=server;
+        
     }
+    
 }
+
+◦ClientMail a besoin d'un ServerMail (injection par setter)
+
+public class ClientMail{
+
+    ServerMail server;
+    
+    @inject 
+    
+    public void setServer (ServerMail server){
+    
+        this.server=server;
+        
+    }
+    
+}
+
+◦ClientMail a besoin d'un ServerMail (injection par attribut)
+
+public class ClientMail{
+
+    @Inject
+    
+    ServerMail server;
+        
+}
+
 ◦ClientMail a besoin d'un MessageFormatter (singleton)
-◦ServerMail a besoin d'une Connection
+
+◦ClientMail a besoin d'un MessageFormatter (injection par constructeur)
+
+public class ClientMail{
+
+    MessageFormatter formatter;
+    
+    @inject 
+    
+    public ClientMail (MessageFormatter formatter){
+    
+        this.formatter=formatter;
+        
+    }
+    
+}
+
+◦ClientMail a besoin d'un MessageFormatter (injection par setter)
+
+public class ClientMail{
+
+    MessageFormatter formatter;
+    
+    @inject 
+    
+    public void setFormatter(MessageFormatter formatter){
+    
+        this.formatter=formatter;
+        
+    }
+    
+}
+
+
+◦ClientMail a besoin d'un MessageFormatter(injection par attribut)
+
+public class ClientMail{
+
+    @Inject
+    
+    MessageFormatter formatter;
+        
+}
+
+◦ServerMail a besoin d'une Connection (injection par constructeur)
+
+public class ServerMail{
+
+    Connexion connexion;
+    
+    @Inject
+    
+    public ServerMail(Connexion connexion){
+    
+        this.connexion = connexion;
+    }
+    
+}
+
+
+◦ServerMail a besoin d'une Connection (injection par setter)
+
+public class ServerMail{
+
+    Connexion connexion;
+    
+    @Inject
+    
+    public void setConnexion(Connexion connexion){
+    
+        this.connexion = connexion;
+    }
+    
+}
+
+◦ServerMail a besoin d'un Connection(injection par attribut)
+
+public class ServerMail{
+
+    @Inject
+    
+    Connexion connexion;
+        
+}
+
 ● Le faire avec chacune des trois types d'injection.
 ● MessageFormatter manipule des beans Message sans dépendances.
+
+<bean id="Message" class="Message">
+
+<constructor-arg ref="message"/>
+
+</bean>
+
+<bean id="formatter" class="MessageFormatter"/>
+
+public Message(@Tcp MessageFormatter formatter){
+}
+
 Doit-on injecter l'objet Message ?
+
+Dans ce cas il n'y a pas besoin d'injecter l'object Message dans le code car la selection du message se fait dans la configuration XML.
